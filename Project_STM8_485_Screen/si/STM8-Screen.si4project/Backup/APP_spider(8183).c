@@ -630,7 +630,7 @@ void APP_spider_uartDeal(void){
                                                   printf("%02X ",UART3.RxBuff[i]);
                                                 }
                                                 printf("\r\n");
-                                            	HAL_RS485_TxNbyte( (u8 *)UART3.RxBuff,UART3.RxLeng+5,USER_USART2);	//485串口数据转发
+                                            	HAL_RS485_TxNbyte();
 						}
 						else if(UART3.RxBuff[len2]==0x33){
 							//下行M包
@@ -641,7 +641,6 @@ void APP_spider_uartDeal(void){
                                                   printf("%02X ",UART3.RxBuff[i]);
                                                 }
                                                 printf("\r\n");
-                                            	HAL_RS485_TxNbyte( (u8 *)UART3.RxBuff,UART3.RxLeng+5,USER_USART2);	//485串口数据转发
                                                   
 						}
 						else if(UART3.RxBuff[len2]==0x34){

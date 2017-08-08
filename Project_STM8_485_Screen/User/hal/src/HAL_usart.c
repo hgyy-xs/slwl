@@ -57,7 +57,7 @@ void HAL_USART_config(void){
   
   USART_DeInit(USART2);
   
-  USART_Init(USART2,(u32)115200,USART_WordLength_8b,USART_StopBits_1,\
+  USART_Init(USART2,(u32)9600,USART_WordLength_8b,USART_StopBits_1,\
             USART_Parity_No,(USART_Mode_TypeDef)(USART_Mode_Tx|USART_Mode_Rx));
   
   USART_ITConfig(USART2,USART_IT_RXNE,ENABLE);

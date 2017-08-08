@@ -1,0 +1,217 @@
+---- APP_SPIDER Matches (254 in 9 files) ----
+APP_Camera_dealSendCmdToSpider in APP_Camera.c (User\app\src) : 			HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);//发送命令
+APP_Camera_dealSendCmdToSpider in APP_Camera.c (User\app\src) : 			HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);//发送命令
+APP_SN_Write in APP_flash.c (User\app\src) : 	HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);         
+APP_LedShow_init in APP_led.c (User\app\src) : 		//APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+APP_LedShow_init in APP_led.c (User\app\src) : 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+APP_spider.c (User\app\src) line 4 : SPIDER_STRUCT  APP_SPIDER;
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.InitDealAddr = 0;		//清除spider初始化事件ID
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.InitOKFlag = FALSE;		//清除spider初始化完成标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.IEPINOK_Flag = FALSE;	//清除spider初始化中断事件标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.SingleRegFlag = FALSE;	//清除spider单终端组网标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.MultRegFlag = FALSE;	//清除spider多终端组网标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.MF_Flag = TRUE;			//清除读取模块形态标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.WP_Flag = TRUE;			//清除读取工作参数标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.WakeupTimeCnt=0;		//清除唤醒时间计数
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.WakeupDealAddr=0;		//清除唤醒事件ID
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.FastCmdFlag=FALSE;		//清除快捷令标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.FastCmdLEDShakeFlag =FALSE;	//清除快捷令LED闪烁标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.Judge_Is_OnNetFlag = FALSE;	//组网完成标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.Judge_ReadyOnNetFlag = FALSE;//准备组网标志位
+APP_spider_ValueInit in APP_spider.c (User\app\src) : 	APP_SPIDER.Judge_SendOnNetCmdFlag = TRUE;//发送组网命令标志位
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :         switch(APP_SPIDER.InitDealAddr){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 模块形态查询
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.InitDealAddr++;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverCnt=500;//100
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.MF_Flag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :                         APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			if(APP_SPIDER.MF_Flag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				APP_SPIDER.InitDealAddr++;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				APP_SPIDER.InitDealAddr=11; //  跳转到模块形态设置
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr--;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.InitDealAddr++;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverCnt=500;//100
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :         if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr++;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :             APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr--;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr= 17;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr=13;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :                         APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :             APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			if(APP_SPIDER.MF_Flag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				APP_SPIDER.InitDealAddr++;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				APP_SPIDER.InitDealAddr=13; //  跳转到模块形态设置
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr--;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.InitOKFlag=TRUE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.InitDealAddr=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.InitDealAddr++;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverCnt=500;//100
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr=1;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :             APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr--;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :                 APP_SPIDER.InitDealAddr++;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverCnt=500;//100
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr=3;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) :                         APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr--;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.InitDealAddr++;	
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		APP_SPIDER.UartRevOverCnt=500;//100
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitOKFlag=TRUE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 	        APP_SPIDER.UartRevOverCnt=0;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 		if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;
+APP_spider_UsartDealForInit in APP_spider.c (User\app\src) : 			APP_SPIDER.InitDealAddr--;	
+APP_spider_IEPIN_deal in APP_spider.c (User\app\src) :  if(APP_SPIDER.IEPINOK_Flag == TRUE)
+APP_spider_IEPIN_deal in APP_spider.c (User\app\src) :    APP_SPIDER.IEPINOK_Flag = FALSE;
+APP_spider_IEPIN_deal in APP_spider.c (User\app\src) : //   HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+APP_spider_IEPIN_deal in APP_spider.c (User\app\src) :    APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+APP_spider_IEPIN_deal in APP_spider.c (User\app\src) :    APP_SPIDER.UartRevOverCnt=500;//100
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : //		  HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :                   APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :       	          APP_SPIDER.UartRevOverCnt=500;//100
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : //		 	 HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :                          APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :                          APP_SPIDER.UartRevOverCnt=500;//100
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : //		 	 HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :    			 APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :                          APP_SPIDER.UartRevOverCnt=500;//100
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			APP_SPIDER.Judge_Is_OnNetFlag = TRUE;	//已经组网
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			if(APP_SPIDER.Judge_Is_OnNetFlag == TRUE)//已经组网
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_SendOnNetCmdFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			if(APP_SPIDER.Judge_Is_OnNetFlag == TRUE)		//已经组网
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_SendOnNetCmdFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) :     		APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			APP_SPIDER.Judge_Is_OnNetFlag = TRUE;	//已经组网
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			if(APP_SPIDER.Judge_Is_OnNetFlag == TRUE)		//已经组网
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_SendOnNetCmdFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 			if(APP_SPIDER.Judge_Is_OnNetFlag == TRUE)		//已经组网
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_ReadyOnNetFlag = TRUE;
+Spider_IEPIN_StatusDeal in APP_spider.c (User\app\src) : 				APP_SPIDER.Judge_SendOnNetCmdFlag = TRUE;
+APP_spider_init in APP_spider.c (User\app\src) : 	APP_SPIDER.StartDly = SPIDER_DLY_TIME;			  //赋值STM启动延时
+APP_spider_init in APP_spider.c (User\app\src) : 	APP_SPIDER.InitOKFlag = FALSE;					  //清除STM初始化成功标志位
+APP_spider_init in APP_spider.c (User\app\src) : 	APP_SPIDER.InitOverTimeCnt = MAIN_SPIDER_INIT_TIME;//赋值STM初始化时间
+APP_spider_init in APP_spider.c (User\app\src) : 	while((APP_SPIDER.InitOverTimeCnt != 0 ) && (APP_SPIDER.InitOKFlag == FALSE )){
+APP_spider_init in APP_spider.c (User\app\src) : 			APP_SPIDER.InitOverTimeCnt--;				//倒计时超时时间
+APP_spider_init in APP_spider.c (User\app\src) : 			if(APP_SPIDER.StartDly != 0){
+APP_spider_init in APP_spider.c (User\app\src) : 				APP_SPIDER.StartDly --;					//倒计时启动时间
+APP_spider_init in APP_spider.c (User\app\src) : 				printf("\r\n%d\r\n",APP_SPIDER.StartDly);
+APP_spider_init in APP_spider.c (User\app\src) : 				if(APP_SPIDER.StartDly == 0){
+APP_spider_init in APP_spider.c (User\app\src) : 					APP_SPIDER.InitDealAddr = 1;			//设置处理spider初始化事件ID为1
+APP_spider_init in APP_spider.c (User\app\src) : 	if(APP_SPIDER.InitOKFlag==TRUE){
+APP_spider_uartDeal in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=TRUE;
+APP_spider_uartDeal in APP_spider.c (User\app\src) : 							APP_SPIDER.Judge_Is_OnNetFlag = UART3.RxBuff[9];//组网标志
+APP_spider_uartDeal in APP_spider.c (User\app\src) : 								APP_SPIDER.MF_Flag=TRUE;
+APP_spider_uartDeal in APP_spider.c (User\app\src) : 							APP_SPIDER.FastCmdFlag=TRUE;//about LED.
+APP_spider_FastCmdLEDshake in APP_spider.c (User\app\src) : 	if(APP_SPIDER.FastCmdLEDShakeFlag==TRUE)
+APP_spider_FastCmdLEDshake in APP_spider.c (User\app\src) : 		if(APP_SPIDER.FastCmdFlag==TRUE)
+APP_spider_FastCmdLEDshake in APP_spider.c (User\app\src) : 	APP_SPIDER.FastCmdFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 	u8 Addr = APP_SPIDER.DealSendCmdToSpiderAddr;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOkFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOverFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOverCnt=1000;//100
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOkFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 		        APP_SPIDER.UartRevOverCnt=0;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOverFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 		  	HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);//发送命令
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOkFlag=FALSE;		//清除spider串口接收完成标志位
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverFlag=FALSE;		//清除spider串口接收超时标志位
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			APP_SPIDER.UartRevOverCnt=500;			//设置spider串口接收超时时间为500s	
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			if(APP_SPIDER.UartRevOkFlag==TRUE){
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOkFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 		        APP_SPIDER.UartRevOverCnt=0;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 			if(APP_SPIDER.UartRevOverFlag==TRUE){
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 				APP_SPIDER.UartRevOverFlag=FALSE;
+APP_Spider_dealSendCmdToSpider in APP_spider.c (User\app\src) : 	 APP_SPIDER.DealSendCmdToSpiderAddr = Addr;
+APP_Spider_ReadyOnNet in APP_spider.c (User\app\src) : 	while(APP_SPIDER.Judge_ReadyOnNetFlag == FALSE){	//判断是否继续进入组网模式
+APP_Spider_ReadyOnNet in APP_spider.c (User\app\src) : 		if(APP_SPIDER.Judge_SendOnNetCmdFlag == TRUE){	//判断是否发送组网命令
+APP_Spider_ReadyOnNet in APP_spider.c (User\app\src) : 			APP_SPIDER.Judge_SendOnNetCmdFlag = FALSE;	//取消发送组网命令
+APP_Spider_ReadyOnNet in APP_spider.c (User\app\src) : 			APP_SPIDER.DealSendCmdToSpiderAddr = 5;	//设置发送命令到spider模块的事件ID为5
+APP_spider.h (User\app\inc) line 65 : extern SPIDER_STRUCT  APP_SPIDER;
+APP_Ultrasonic_UartRxDealforWork in APP_Ultrasonic.c (User\app\src) : 				APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+HAL_KEY_deal in HAL_key.c (User\hal\src) : 				HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+HAL_KEY_deal in HAL_key.c (User\hal\src) : 				HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,USER_USART1);
+HAL_KEY_deal in HAL_key.c (User\hal\src) :                 APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+HAL_KEY_deal in HAL_key.c (User\hal\src) : 				HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);
+HAL_KEY_deal in HAL_key.c (User\hal\src) : 				HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,USER_USART1);
+HAL_KEY_deal in HAL_key.c (User\hal\src) :                 APP_SPIDER.DealSendCmdToSpiderAddr = 1;
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartLeng =0 ;
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= SPIDER_CMD_START;// 头
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= 0x02;// 长度低字节
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= 0x00;
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= cmd;// 命令类别
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= cmd1;// 具体命令
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	cnt = APP_SPIDER.TxUsartLeng;
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= ALG_CmdCrcCal(&APP_SPIDER.TxUsartData[1],cnt-1);
+PRO_spider_BuildCMDForNoPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= SPIDER_CMD_END;
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartLeng =0 ;
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= SPIDER_CMD_START;// 头(开始符)
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartLeng+=2; // 跳过长度2个字节
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= cmd;// 命令类别
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= cmd1;// 具体命令
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 		APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]=*(pdata+cnt);
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[1]= (APP_SPIDER.TxUsartLeng-3)&0xFF;
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[2]= ((APP_SPIDER.TxUsartLeng-3)>>8)&0xFF;
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	cnt = APP_SPIDER.TxUsartLeng;
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= ALG_CmdCrcCal(&APP_SPIDER.TxUsartData[1],cnt-1);
+PRO_spider_BuildCMDForPar in PRO_spider.c (User) : 	APP_SPIDER.TxUsartData[APP_SPIDER.TxUsartLeng++]= SPIDER_CMD_END;
+INTERRUPT_HANDLER in stm8l15x_it.c (User) : 	APP_SPIDER.IEPINOK_Flag = TRUE;		//标志spider模块中断标志位
+INTERRUPT_HANDLER in stm8l15x_it.c (User) :   if((APP_SPIDER.UartRevOverCnt!=0)&&(APP_SPIDER.UartRevOverFlag==FALSE))
+INTERRUPT_HANDLER in stm8l15x_it.c (User) : 	APP_SPIDER.UartRevOverCnt--;
+INTERRUPT_HANDLER in stm8l15x_it.c (User) : 	if(APP_SPIDER.UartRevOverCnt==0){
+INTERRUPT_HANDLER in stm8l15x_it.c (User) : 		APP_SPIDER.UartRevOverFlag=TRUE;

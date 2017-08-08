@@ -50,9 +50,9 @@
 typedef struct 
 {
   u8 CmdStartByte[2];
-  u8 Init_LED_ShakeFlag;				//初始化 ，ALL LED闪烁标志
-  u8 Init_LED_AlternateShakeFlag;		//初始化 ，LED交替闪烁标志
-  u8 Init_LED1_ShakeFlag;				//初始化 ，LED1闪烁标志
+  u8 Init_LED_ShakeFlag;				//ALL LED闪烁标志
+  u8 Init_LED_AlternateShakeFlag;		//LED交替闪烁标志
+  u8 Init_LED1_ShakeFlag;				//LED1闪烁标志
 
 }Main_STRUCT;
 
