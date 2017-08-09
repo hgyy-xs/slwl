@@ -637,8 +637,7 @@ void APP_spider_uartDeal(void){
                                             	//HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
 												// PRO_spider_BuildCMDForPar(CMD_TYPE_TRFER,TRFER_CMD_SENDUPACK,g_temporary_buffer_for_screen.buffer,3);//生成U包命令
 												// APP_SPIDER.DealSendCmdToSpiderAddr = 1;//标志有命令需要发送到spider
-												//APP_Screen_dealSendCmdToSpider();
-                                            	
+												APP_Screen_dealSendCmdToSpider();	//DDA终端回执                                           	
 						}
 						else if(UART3.RxBuff[len2]==0x33){
 							//下行M包
@@ -653,6 +652,7 @@ void APP_spider_uartDeal(void){
 												
                                                 HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
                                             	// HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
+                                            	APP_Screen_dealSendCmdToSpider();	//DDA终端回执  
 						}
 						else if(UART3.RxBuff[len2]==0x34){
 							//下行P包次数

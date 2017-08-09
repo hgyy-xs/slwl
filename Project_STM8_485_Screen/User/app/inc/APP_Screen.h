@@ -4,7 +4,7 @@
 #include "main.h"
 #include <string.h>
 
-#define Screen_Ack_Lenght 12
+#define Screen_Ack_Lenght 13
 #define Screen_Tx_Lenght 140
 
 typedef struct{
