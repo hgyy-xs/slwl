@@ -628,21 +628,31 @@ void APP_spider_uartDeal(void){
                                                 for(i=0; i<UART3.RxLeng+5; i++)
                                                 {
                                                   printf("%02X ",UART3.RxBuff[i]);
+												  APP_Screen.Tx_Data[i]=UART3.RxBuff[i];	//缓存U包数据
                                                 }
                                                 printf("\r\n");
-                                            	HAL_RS485_TxNbyte( (u8 *)UART3.RxBuff,UART3.RxLeng+5,USER_USART2);	//485串口数据转发
+                                                printf("DDA TO Screen U数据长度：%02x\n",APP_Screen.Tx_Data[7]);
+												
+                                                HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
+                                            	//HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
+												// PRO_spider_BuildCMDForPar(CMD_TYPE_TRFER,TRFER_CMD_SENDUPACK,g_temporary_buffer_for_screen.buffer,3);//生成U包命令
+												// APP_SPIDER.DealSendCmdToSpiderAddr = 1;//标志有命令需要发送到spider
+												//APP_Screen_dealSendCmdToSpider();
+                                            	
 						}
 						else if(UART3.RxBuff[len2]==0x33){
 							//下行M包
-                                                  
                                                 printf("\r\nReceived M Package:");
                                                 for(i=0; i<UART3.RxLeng+5; i++)
                                                 {
                                                   printf("%02X ",UART3.RxBuff[i]);
+												  APP_Screen.Tx_Data[i]=UART3.RxBuff[i];	//缓存M包数据
                                                 }
                                                 printf("\r\n");
-                                            	HAL_RS485_TxNbyte( (u8 *)UART3.RxBuff,UART3.RxLeng+5,USER_USART2);	//485串口数据转发
-                                                  
+                                                printf("DDA TO Screen M数据长度：%02x\n",APP_Screen.Tx_Data[7]);
+												
+                                                HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
+                                            	// HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
 						}
 						else if(UART3.RxBuff[len2]==0x34){
 							//下行P包次数

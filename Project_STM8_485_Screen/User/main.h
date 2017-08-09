@@ -22,6 +22,7 @@
 #include "APP_Camera.h"
 #include "APP_flash.h"
 #include "APP_led.h"
+#include "APP_Screen.h"
 
 #include "sysclk.h"
 

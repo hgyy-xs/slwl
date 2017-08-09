@@ -1590,6 +1590,9 @@
       <name>$PROJ_DIR$\User\app\src\APP_nor_mode.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\User\app\src\APP_Screen.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\User\app\src\APP_spider.c</name>
     </file>
   </group>
