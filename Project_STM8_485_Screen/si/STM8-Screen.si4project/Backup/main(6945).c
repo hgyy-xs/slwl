@@ -52,7 +52,6 @@ static void WORK_VALUE_init(void){
  * 返 回 值: 无
  * 其    他: 
  */
-
 void main(void){
 	DEVICE_init();					//外设初始化 
 	WORK_VALUE_init();				//结构体赋值初始化

@@ -34,7 +34,14 @@ void APP_spider_ValueInit(void){
 	APP_SPIDER.Judge_SendOnNetCmdFlag = TRUE;//发送组网命令标志位
 }
 
-
+/*
+ * 函 数 名: APP_spider_ValueInit
+ * 功    能: spider结构体赋初始值
+ * 输入参数: 无
+ * 输出参数: 无
+ * 返 回 值: 无
+ * 其    他: 
+ */
 void APP_spider_UsartDealForInit(void)
 {
 	u8 i = 0;
@@ -48,12 +55,14 @@ void APP_spider_UsartDealForInit(void)
 		HalTim4_StrPar.TIM_T200mSFlag=FALSE;
                 
 		PRO_spider_BuildCMDForNoPar(CMD_TYPE_QUERY,QUERY_CMD_GETMODULESHAPE);
-                	printf("\r\n【MCU to spider】:");
+#ifdef DEBUG      	
+				printf("\r\n【MCU to spider】:");
 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 				{
 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
 				}
 				printf("\r\n");
+#endif
 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 模块形态查询
                 
 		APP_SPIDER.InitDealAddr++;
@@ -87,12 +96,14 @@ void APP_spider_UsartDealForInit(void)
 		s_tmp[1] = 0x00;
                 
 		PRO_spider_BuildCMDForPar(CMD_TYPE_QUERY,QUERY_CMD_GETWORKPARAMETER,s_tmp,2);
-                	printf("\r\n【MCU to spider】:");
+#ifdef DEBUG      	
+				printf("\r\n【MCU to spider】:");
 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 				{
 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
 				}
 				printf("\r\n");
+#endif
 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
                 
 		APP_SPIDER.InitDealAddr++;	
@@ -184,15 +195,17 @@ void APP_spider_UsartDealForInit(void)
 		}
                 
 		PRO_spider_BuildCMDForPar(CMD_TYPE_CONFIG,CONFIG_CMD_SETWORKPARAMETER,(u8 *)s_tmp,44);//39to44
-                	printf("\r\n【MCU to spider】:");
+#ifdef DEBUG      	
+				printf("\r\n【MCU to spider】:");
 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 				{
 					printf("%02X ",APP_SPIDER.TxUsartData[i]);
 				}
 				printf("\r\n");
+#endif
 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
                 
-                APP_SPIDER.InitDealAddr++;	
+        APP_SPIDER.InitDealAddr++;	
 		APP_SPIDER.UartRevOkFlag=FALSE;
 		APP_SPIDER.UartRevOverFlag=FALSE;
 		APP_SPIDER.UartRevOverCnt=500;//100
@@ -220,12 +233,14 @@ void APP_spider_UsartDealForInit(void)
 		
 		PRO_spider_BuildCMDForPar(CMD_TYPE_QUERY,QUERY_CMD_GETNETFILE,s_tmp,2);
               //  printf("MCU TO DDA ");
-              				printf("\r\n【MCU to spider】:");
-				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
-				{
-					printf("%02X ",APP_SPIDER.TxUsartData[i]);
-				}
-				printf("\r\n");
+#ifdef DEBUG      	
+		printf("\r\n【MCU to spider】:");
+		for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
+		{
+			printf("%02X ",APP_SPIDER.TxUsartData[i]);
+		}
+		printf("\r\n");
+#endif
 		HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,SPIDER_USART);// 工作参数查询
                 
 		APP_SPIDER.InitDealAddr++;	
@@ -276,28 +291,36 @@ static void Spider_IEPIN_StatusDeal(unsigned char *data)
   if(data[6] &(1 << 0)){
  	switch(data[7] & 0x0f){
  		case 0x01:		//一级单终端组网模式
+#ifdef DEBUG                                               
  		printf("\r\n【spider status】:only networking mode\r\n");
+#endif
 		if(Main_StrPar.Init_LED_ShakeFlag == FALSE){
 			Main_StrPar.Init_LED1_ShakeFlag = FALSE;
 			Main_StrPar.Init_LED_AlternateShakeFlag = TRUE;	//LED交替闪烁开启
 		}
 			break;
 		case 0x02:		//一级多终端组网模式
+#ifdef DEBUG                                               
  		printf("\r\n【spider status】:multi-terminal networking mode\r\n");
+#endif
 		if(Main_StrPar.Init_LED_ShakeFlag == FALSE){
 			Main_StrPar.Init_LED1_ShakeFlag = FALSE;
 			Main_StrPar.Init_LED_AlternateShakeFlag = TRUE;	//LED交替闪烁开启
 		}
 			break;
 		case 0x03:		//普通模式
+#ifdef DEBUG                                               
 		printf("\r\n【spider status】:normal mode\r\n");
+#endif
 		if(Main_StrPar.Init_LED_ShakeFlag == FALSE){				//判断初始化是否完成
 			Main_StrPar.Init_LED_AlternateShakeFlag = FALSE;	//LED交替闪烁关闭
 			Main_StrPar.Init_LED1_ShakeFlag = TRUE;				//LED1秒闪开启
 		}
 			break;
 		case 0x04:		//休眠模式
+#ifdef DEBUG                                               
 		printf("\r\n【spider status】:sleep mode\r\n");
+#endif
 			break;
 		default:
 			break;
@@ -459,7 +482,9 @@ void APP_spider_init(void){
 			APP_SPIDER.InitOverTimeCnt--;				//倒计时超时时间
 			if(APP_SPIDER.StartDly != 0){
 				APP_SPIDER.StartDly --;					//倒计时启动时间
+#ifdef DEBUG
 				printf("\r\n%d\r\n",APP_SPIDER.StartDly);
+#endif
 				if(APP_SPIDER.StartDly == 0){
 					APP_SPIDER.InitDealAddr = 1;			//设置处理spider初始化事件ID为1
 				}
@@ -473,10 +498,17 @@ void APP_spider_init(void){
 		APP_spider_IEPIN_deal();
 	}
 	if(APP_SPIDER.InitOKFlag==TRUE){
+		
+#ifdef DEBUG
 		printf("\r\nSpider module init success!\r\n");
+#endif
+
 	}
 	else{
+		
+#ifdef DEBUG
 		printf("\r\nSpider module init timeout!\r\n");
+#endif
 	}
 }
 
@@ -494,14 +526,14 @@ void APP_spider_uartDeal(void){
 		if(UART3.RxBuff[UART3.RxLeng+3]==crc1){
                   
 			APP_SPIDER.UartRevOkFlag=TRUE;
-                        
-            printf("DDA to MCU ");
+#ifdef DEBUG                        
+            printf("【DDA to MCU】");
             for(int cnt=0;cnt<UART3.RxLeng+5;cnt++)
 			{
 				printf("%02X ",UART3.RxBuff[cnt]);
 			}
 			printf("\r\n");
-
+#endif
                         
 			// 判断应答结果
 			if(UART3.RxBuff[len3]==0x80){
@@ -623,17 +655,22 @@ void APP_spider_uartDeal(void){
 						}
 						else if(UART3.RxBuff[len2]==0x32){
 							//下行U包
-                                                  
+#ifdef DEBUG                                               
                                                 printf("\r\nReceived U Package:");
+#endif
                                                 for(i=0; i<UART3.RxLeng+5; i++)
                                                 {
+#ifdef DEBUG                                               
                                                   printf("%02X ",UART3.RxBuff[i]);
+#endif
 												  APP_Screen.Tx_Data[i]=UART3.RxBuff[i];	//缓存U包数据
                                                 }
+#ifdef DEBUG                                               
                                                 printf("\r\n");
                                                 printf("DDA TO Screen U数据长度：%02x\n",APP_Screen.Tx_Data[7]);
-												
+#endif												
                                                 HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
+                                                
                                             	//HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
 												// PRO_spider_BuildCMDForPar(CMD_TYPE_TRFER,TRFER_CMD_SENDUPACK,g_temporary_buffer_for_screen.buffer,3);//生成U包命令
 												// APP_SPIDER.DealSendCmdToSpiderAddr = 1;//标志有命令需要发送到spider
@@ -641,15 +678,20 @@ void APP_spider_uartDeal(void){
 						}
 						else if(UART3.RxBuff[len2]==0x33){
 							//下行M包
+#ifdef DEBUG                                               
                                                 printf("\r\nReceived M Package:");
+#endif
                                                 for(i=0; i<UART3.RxLeng+5; i++)
                                                 {
+#ifdef DEBUG                                               
                                                   printf("%02X ",UART3.RxBuff[i]);
+#endif
 												  APP_Screen.Tx_Data[i]=UART3.RxBuff[i];	//缓存M包数据
                                                 }
+#ifdef DEBUG  
                                                 printf("\r\n");
                                                 printf("DDA TO Screen M数据长度：%02x\n",APP_Screen.Tx_Data[7]);
-												
+#endif
                                                 HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
                                             	// HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
                                             	APP_Screen_dealSendCmdToSpider();	//DDA终端回执  

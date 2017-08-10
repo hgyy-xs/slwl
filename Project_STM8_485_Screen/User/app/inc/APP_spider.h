@@ -20,7 +20,7 @@
 
 
 #define SPIDER_DLY_TIME 	        5  //spider启动延时
-#define MAIN_SPIDER_INIT_TIME	30// SPIDER模块总初始化时间35S
+#define MAIN_SPIDER_INIT_TIME	10// SPIDER模块总初始化时间35S
 
 
 
@@ -28,6 +28,7 @@
 #define  APP_SPIDER_HARDWARE_DISABLE()    SPIDER_TM_RESET_DISABLE()
 #define  APP_SPIDER_HARDWARE_ENABLE()	SPIDER_TM_RESET_ENABLE()
 
+// extern const static u8 SPIDER_WORK_DATA[42]; //37to42
 
 //-------------------------------变量
 typedef struct{

@@ -1,20 +1,6 @@
----- UART3.RxLeng Matches (19 in 4 files) ----
-StateNumberDate in APP_Camera.c (User\app\src) : 	APP_CAMERA.SpaceState = UART2.RxBuff[UART2.RxLeng - 3] - 0X30;
-CarPlateNumber in APP_Camera.c (User\app\src) : 	if(UART2.RxBuff[UART2.RxLeng - 57] == 0x22){
-CarPlateNumber in APP_Camera.c (User\app\src) : 		platelenstart = UART2.RxLeng - 58;
-APP_spider_uartDeal in APP_spider.c (User\app\src) : 		crc1= ALG_CmdCrcCal(&UART3.RxBuff[1],(UART3.RxLeng+2));//计算校验值
-APP_spider_uartDeal in APP_spider.c (User\app\src) : 		if(UART3.RxBuff[UART3.RxLeng+3]==crc1){
-APP_spider_uartDeal in APP_spider.c (User\app\src) :             for(int cnt=0;cnt<UART3.RxLeng+5;cnt++)
-APP_spider_uartDeal in APP_spider.c (User\app\src) :                                                 for(i=0; i<UART3.RxLeng+5; i++)
-APP_spider_uartDeal in APP_spider.c (User\app\src) :                                             	HAL_RS485_TxNbyte( (u8 *)UART3.RxBuff,UART3.RxLeng+5,USER_USART2);	//485串口数据转发
-APP_spider_uartDeal in APP_spider.c (User\app\src) :                                                 for(i=0; i<UART3.RxLeng+5; i++)
-APP_spider_uartDeal in APP_spider.c (User\app\src) :                                             	HAL_RS485_TxNbyte( (u8 *)UART3.RxBuff,UART3.RxLeng+5,USER_USART2);	//485串口数据转发
-UART2_ValueInit in HAL_usart.c (User\hal\src) : 	UART2.RxLeng = 0;
-UART3_ValueInit in HAL_usart.c (User\hal\src) : 	UART3.RxLeng = 0;
-HAL_UART2_IERecieve in HAL_usart.c (User\hal\src) : 				UART2.RxLeng = UART2.RxCnt;
-HAL_UART3_IERecieve in HAL_usart.c (User\hal\src) :                 UART3.RxLeng=dat;
-HAL_UART3_IERecieve in HAL_usart.c (User\hal\src) :                 UART3.RxLeng+=(u16)dat<<8;
-HAL_UART3_IERecieve in HAL_usart.c (User\hal\src) : 				if(UART3.RxLeng>50){
-HAL_UART3_IERecieve in HAL_usart.c (User\hal\src) : 				if(UART3.RxCnt<(UART3.RxLeng+3+1+1)){
-HAL_UART3_IERecieve in HAL_usart.c (User\hal\src) : 				else if(UART3.RxCnt==(UART3.RxLeng+3+1+1)){
-UART_STRUCT in HAL_usart.h (User\hal\inc) :     u16	RxLeng;       // 接收数据长度
+---- APP_Spider_dealSendCmdToSpider Matches (5 in 3 files) ----
+APP_nor_mode_RealTask in APP_nor_mode.c (User\app\src) : 	APP_Spider_dealSendCmdToSpider();	//发送命令到spider处理
+APP_spider_init in APP_spider.c (User\app\src) : 		APP_Spider_dealSendCmdToSpider();
+APP_spider.c (User\app\src) line 725 : void APP_Spider_dealSendCmdToSpider(void){
+APP_Spider_ReadyOnNet in APP_spider.c (User\app\src) : 		APP_Spider_dealSendCmdToSpider();				//发送命令到spider模块的事件
+APP_spider.h (User\app\inc) line 74 : void APP_Spider_dealSendCmdToSpider(void);

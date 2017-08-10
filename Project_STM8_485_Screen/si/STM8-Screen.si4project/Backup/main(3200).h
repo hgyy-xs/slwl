@@ -37,7 +37,7 @@
 
 
 //µ÷ÊÔ¿ª¹Ø
-#define  DEBUG
+//#define  INIT_DEBUG
 
 #define _BV(bit) (1 << (bit))
 

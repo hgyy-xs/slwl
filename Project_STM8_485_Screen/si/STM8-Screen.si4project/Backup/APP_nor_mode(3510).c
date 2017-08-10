@@ -47,22 +47,19 @@ void APP_nor_mode_FixedTask(void){
  * 其    他: 
  */
 void APP_nor_mode_SysNormalMode(void){
-		// while(1){
-	// 	if(APP_SN_Init()){
-	// 		//break;
-	// 		printf("have SN");
-	// 	}
-	// 	else{
-	// 		printf("havn`t SN");
-	// 	}
-	// // }
-	APP_SN_Init();
+		//while(1){
+		//if(APP_SN_Init()){
+			//break;
+			//printf("have SN");
+		//}
+		//else{
+		//	printf("havn`t SN");
+		//}
+	//}
 	APP_spider_init();			//spider模块初始化
 	Main_StrPar.Init_LED_ShakeFlag = FALSE;	//初始化完成
 	APP_Spider_ReadyOnNet();	//
-#ifdef DEBUG
 	printf("\r\nall init success\r\n");
-#endif
 	while(1){
 		APP_nor_mode_RealTask();	//实时的任务
 		APP_nor_mode_FixedTask();
