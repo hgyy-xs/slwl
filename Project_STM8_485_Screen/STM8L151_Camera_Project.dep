@@ -225,6 +225,10 @@
       <name>$PROJ_DIR$\User\app\src\APP_Camera.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 184</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 83</file>
         </tool>
@@ -232,6 +236,10 @@
       <inputs>
         <tool>
           <name>ICCSTM8</name>
+          <file> 183 142 189 104 148 168 165 65 107 103 92 135 138 89 166 182 60 149 124 52 111 201 133 54 99 139 113 78 196 91 147 48 72 158 116 172 105 160 204 128 151 67 123 190 157</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
           <file> 183 142 189 104 148 168 165 65 107 103 92 135 138 89 166 182 60 149 124 52 111 201 133 54 99 139 113 78 196 91 147 48 72 158 116 172 105 160 204 128 151 67 123 190 157</file>
         </tool>
       </inputs>
@@ -263,6 +271,10 @@
       <name>$PROJ_DIR$\User\app\src\APP_flash.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 143</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 77</file>
         </tool>
@@ -281,6 +293,10 @@
     <file>
       <name>$PROJ_DIR$\User\app\src\APP_led.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 167</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 156</file>
@@ -301,6 +317,10 @@
       <name>$PROJ_DIR$\User\app\src\APP_nor_mode.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 58</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 191</file>
         </tool>
@@ -320,6 +340,10 @@
       <name>$PROJ_DIR$\User\app\src\APP_Screen.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 129</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 131</file>
         </tool>
@@ -338,6 +362,10 @@
     <file>
       <name>$PROJ_DIR$\User\app\src\APP_spider.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 118</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 59</file>
@@ -1002,6 +1030,10 @@
       <name>$PROJ_DIR$\User\hal\src\HAL_eeprom.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 199</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 175</file>
         </tool>
@@ -1020,6 +1052,10 @@
     <file>
       <name>$PROJ_DIR$\User\hal\src\HAL_gpio.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 197</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 202</file>
@@ -1040,6 +1076,10 @@
       <name>$PROJ_DIR$\User\hal\src\HAL_key.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 85</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 121</file>
         </tool>
@@ -1058,6 +1098,10 @@
     <file>
       <name>$PROJ_DIR$\User\hal\src\HAL_led.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 88</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 74</file>
@@ -1078,6 +1122,10 @@
       <name>$PROJ_DIR$\User\hal\src\HAL_tim.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 112</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 76</file>
         </tool>
@@ -1096,6 +1144,10 @@
     <file>
       <name>$PROJ_DIR$\User\hal\src\HAL_usart.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 117</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 61</file>
@@ -1116,6 +1168,10 @@
       <name>$PROJ_DIR$\User\PRO_spider.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 136</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 97</file>
         </tool>
@@ -1134,6 +1190,10 @@
     <file>
       <name>$PROJ_DIR$\User\main.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 180</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 146</file>
@@ -1154,6 +1214,10 @@
       <name>$PROJ_DIR$\User\FUN_algorithm.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 62</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 64</file>
         </tool>
@@ -1173,6 +1237,10 @@
       <name>$PROJ_DIR$\User\stm8l15x_it.c</name>
       <outputs>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 144</file>
+        </tool>
+        <tool>
           <name>BICOMP</name>
           <file> 55</file>
         </tool>
@@ -1191,6 +1259,10 @@
     <file>
       <name>$PROJ_DIR$\User\sysclk.c</name>
       <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 176</file>
+        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 145</file>

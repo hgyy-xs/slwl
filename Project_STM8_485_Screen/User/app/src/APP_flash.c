@@ -39,10 +39,10 @@ void APP_SN_Init(void){
 				printf("\r\n【MCU status】:SN: %02X_%02X_%02X_%02X_%02X\r\n",APP_SN_StrPar.SNdata[0],
 				APP_SN_StrPar.SNdata[1],APP_SN_StrPar.SNdata[2],APP_SN_StrPar.SNdata[3],APP_SN_StrPar.SNdata[4]);
 #endif
-				// for (int i = 0; i < 5; ++i)	//写入工作参数区
-				// {
-				// 	SPIDER_WORK_DATA[i]=APP_SN_StrPar.SNdata[i];
-				// }
+				for (int i = 0; i < 5; ++i)	//写入工作参数区
+				{
+					SPIDER_WORK_DATA[i]=APP_SN_StrPar.SNdata[i];
+				}
 			}else{	//加密不正确
 				while(1)
 				{

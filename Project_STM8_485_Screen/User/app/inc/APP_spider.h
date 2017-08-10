@@ -28,7 +28,7 @@
 #define  APP_SPIDER_HARDWARE_DISABLE()    SPIDER_TM_RESET_DISABLE()
 #define  APP_SPIDER_HARDWARE_ENABLE()	SPIDER_TM_RESET_ENABLE()
 
-// extern const static u8 SPIDER_WORK_DATA[42]; //37to42
+extern   u8 SPIDER_WORK_DATA[42]; //37to42
 
 //-------------------------------±‰¡ø
 typedef struct{
