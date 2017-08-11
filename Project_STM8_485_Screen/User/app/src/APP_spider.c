@@ -55,7 +55,7 @@ void APP_spider_UsartDealForInit(void)
 		HalTim4_StrPar.TIM_T200mSFlag=FALSE;
                 
 		PRO_spider_BuildCMDForNoPar(CMD_TYPE_QUERY,QUERY_CMD_GETMODULESHAPE);
-#ifdef DEBUG      	
+#ifdef DEBUG_MCU_TO_DDA      	
 				printf("\r\n【MCU to spider】:");
 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 				{
@@ -96,7 +96,7 @@ void APP_spider_UsartDealForInit(void)
 		s_tmp[1] = 0x00;
                 
 		PRO_spider_BuildCMDForPar(CMD_TYPE_QUERY,QUERY_CMD_GETWORKPARAMETER,s_tmp,2);
-#ifdef DEBUG      	
+#ifdef DEBUG_MCU_TO_DDA      	
 				printf("\r\n【MCU to spider】:");
 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 				{
@@ -195,7 +195,7 @@ void APP_spider_UsartDealForInit(void)
 		}
                 
 		PRO_spider_BuildCMDForPar(CMD_TYPE_CONFIG,CONFIG_CMD_SETWORKPARAMETER,(u8 *)s_tmp,44);//39to44
-#ifdef DEBUG      	
+#ifdef DEBUG_MCU_TO_DDA      	
 				printf("\r\n【MCU to spider】:");
 				for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 				{
@@ -233,7 +233,7 @@ void APP_spider_UsartDealForInit(void)
 		
 		PRO_spider_BuildCMDForPar(CMD_TYPE_QUERY,QUERY_CMD_GETNETFILE,s_tmp,2);
               //  printf("MCU TO DDA ");
-#ifdef DEBUG      	
+#ifdef DEBUG_MCU_TO_DDA      	
 		printf("\r\n【MCU to spider】:");
 		for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
 		{
@@ -270,8 +270,9 @@ void APP_spider_IEPIN_deal(void)
 {
  if(APP_SPIDER.IEPINOK_Flag == TRUE)
  {
-   printf("\r\nincoming a event.\r\n");
-   
+#ifdef DEBUG_MCU_STATUS
+   printf("\r\n【MCU Status】:incoming a event.\r\n");
+#endif
    APP_SPIDER.IEPINOK_Flag = FALSE;
    
    PRO_spider_BuildCMDForNoPar(CMD_TYPE_QUERY,QUERY_CMD_GETMODULESTATUS);
@@ -291,7 +292,7 @@ static void Spider_IEPIN_StatusDeal(unsigned char *data)
   if(data[6] &(1 << 0)){
  	switch(data[7] & 0x0f){
  		case 0x01:		//一级单终端组网模式
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                              
  		printf("\r\n【spider status】:only networking mode\r\n");
 #endif
 		if(Main_StrPar.Init_LED_ShakeFlag == FALSE){
@@ -300,7 +301,7 @@ static void Spider_IEPIN_StatusDeal(unsigned char *data)
 		}
 			break;
 		case 0x02:		//一级多终端组网模式
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
  		printf("\r\n【spider status】:multi-terminal networking mode\r\n");
 #endif
 		if(Main_StrPar.Init_LED_ShakeFlag == FALSE){
@@ -309,7 +310,7 @@ static void Spider_IEPIN_StatusDeal(unsigned char *data)
 		}
 			break;
 		case 0x03:		//普通模式
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
 		printf("\r\n【spider status】:normal mode\r\n");
 #endif
 		if(Main_StrPar.Init_LED_ShakeFlag == FALSE){				//判断初始化是否完成
@@ -318,7 +319,7 @@ static void Spider_IEPIN_StatusDeal(unsigned char *data)
 		}
 			break;
 		case 0x04:		//休眠模式
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
 		printf("\r\n【spider status】:sleep mode\r\n");
 #endif
 			break;
@@ -482,8 +483,8 @@ void APP_spider_init(void){
 			APP_SPIDER.InitOverTimeCnt--;				//倒计时超时时间
 			if(APP_SPIDER.StartDly != 0){
 				APP_SPIDER.StartDly --;					//倒计时启动时间
-#ifdef DEBUG
-				printf("\r\n%d\r\n",APP_SPIDER.StartDly);
+#ifdef DEBUG_MCU_STATUS
+				printf("\r\n【MCU Status】:%d\r\n",APP_SPIDER.StartDly);
 #endif
 				if(APP_SPIDER.StartDly == 0){
 					APP_SPIDER.InitDealAddr = 1;			//设置处理spider初始化事件ID为1
@@ -499,14 +500,14 @@ void APP_spider_init(void){
 	}
 	if(APP_SPIDER.InitOKFlag==TRUE){
 		
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 		printf("\r\nSpider module init success!\r\n");
 #endif
 
 	}
 	else{
 		
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 		printf("\r\nSpider module init timeout!\r\n");
 #endif
 	}
@@ -526,7 +527,7 @@ void APP_spider_uartDeal(void){
 		if(UART3.RxBuff[UART3.RxLeng+3]==crc1){
                   
 			APP_SPIDER.UartRevOkFlag=TRUE;
-#ifdef DEBUG                        
+#ifdef DEBUG_DDA_TO_MCU                     
             printf("【DDA to MCU】");
             for(int cnt=0;cnt<UART3.RxLeng+5;cnt++)
 			{
@@ -655,17 +656,17 @@ void APP_spider_uartDeal(void){
 						}
 						else if(UART3.RxBuff[len2]==0x32){
 							//下行U包
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
                                                 printf("\r\nReceived U Package:");
 #endif
                                                 for(i=0; i<UART3.RxLeng+5; i++)
                                                 {
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
                                                   printf("%02X ",UART3.RxBuff[i]);
 #endif
 												  APP_Screen.Tx_Data[i]=UART3.RxBuff[i];	//缓存U包数据
                                                 }
-#ifdef DEBUG                                               
+#ifdef DEBUG_MCU_STATUS                                               
                                                 printf("\r\n");
                                                 printf("DDA TO Screen U数据长度：%02x\n",APP_Screen.Tx_Data[7]);
 #endif												
@@ -678,17 +679,17 @@ void APP_spider_uartDeal(void){
 						}
 						else if(UART3.RxBuff[len2]==0x33){
 							//下行M包
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
                                                 printf("\r\nReceived M Package:");
 #endif
                                                 for(i=0; i<UART3.RxLeng+5; i++)
                                                 {
-#ifdef DEBUG                                               
+#ifdef DEBUG_DDA_TO_MCU                                               
                                                   printf("%02X ",UART3.RxBuff[i]);
 #endif
 												  APP_Screen.Tx_Data[i]=UART3.RxBuff[i];	//缓存M包数据
                                                 }
-#ifdef DEBUG  
+#ifdef DEBUG_MCU_STATUS  
                                                 printf("\r\n");
                                                 printf("DDA TO Screen M数据长度：%02x\n",APP_Screen.Tx_Data[7]);
 #endif

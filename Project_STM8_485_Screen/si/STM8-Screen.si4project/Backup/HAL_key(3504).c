@@ -82,7 +82,7 @@ void HAL_KEY_deal(void){
 			LED1_OFF();
 		}
 	}
-	//长按处理 LED1闪两下(被按下2s以上)
+	//长按处理 LED1闪两下
 	else if((HalKey1_StrPar.press_cnt>=KEY_PRESS_SCAN_CNT+2000)&&(HalKey1_StrPar.press_cnt<5000)&&(HalKey1_StrPar.nopre_cnt<KEY_FLOAT_SCAN_CNT))
 	{
 		if(HalKey1_StrPar.press_status!=2)
@@ -110,7 +110,7 @@ void HAL_KEY_deal(void){
 				APP_LED.vehicle_count = 1;
 			}
 			APP_LED.vehicle_count--;
-#ifdef DEBUG_MCU_STATUS
+#ifdef DEBUG
 			printf("\r\n空车位数：%d\n",APP_LED.vehicle_count);
 #endif
 		}
@@ -163,7 +163,7 @@ void HAL_KEY_deal(void){
 				APP_LED.vehicle_count = 8;
 			}
 			APP_LED.vehicle_count++;
-#ifdef DEBUG_MCU_STATUS
+#ifdef DEBUG
 			printf("\r\n空车位数：%d\n",APP_LED.vehicle_count);   
 #endif
 		}

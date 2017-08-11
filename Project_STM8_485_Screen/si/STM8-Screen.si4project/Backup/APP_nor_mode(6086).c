@@ -10,7 +10,7 @@
  */
 static void APP_nor_mode_RealTask(void){
 	feed_IWDG();				//喂狗
-	//HAL_KEY_Scan();			//按键扫描
+	HAL_KEY_Scan();			//按键扫描
 	HAL_KEY_deal();			//按键处理
 	APP_spider_uartDeal();		//spider串口处理
 	APP_Spider_dealSendCmdToSpider();	//发送命令到spider处理
@@ -60,7 +60,7 @@ void APP_nor_mode_SysNormalMode(void){
 	APP_spider_init();			//spider模块初始化
 	Main_StrPar.Init_LED_ShakeFlag = FALSE;	//初始化完成
 	APP_Spider_ReadyOnNet();	//
-#ifdef DEBUG_MCU_STATUS
+#ifdef DEBUG
 	printf("\r\nall init success\r\n");
 #endif
 	while(1){

@@ -12,13 +12,13 @@ void APP_Screen_dealSendCmdToSpider(void){
 	PRO_spider_BuildCMDForPar(CMD_TYPE_TRFER,TRFER_CMD_SENDUPACK,APP_Screen_Ack.Data,Screen_Ack_Lenght);//生成U包命令
 	HAL_USART_SendStringN((u8 *)APP_SPIDER.TxUsartData,APP_SPIDER.TxUsartLeng,USER_USART3);	//mcu to spider
 	APP_SPIDER.DealSendCmdToSpiderAddr = 1;//标志有命令需要发送到spider
-#ifdef DEBUG
-    printf("\r\nSend U Package:");
+#ifdef DEBUG_MCU_TO_DDA
+    printf("\r\nScreen_to_DDA ACK U Package:");
     for(i=0; i<APP_SPIDER.TxUsartLeng; i++)
     {
       printf("%02X ",APP_SPIDER.TxUsartData[i]);
     }
-	 printf("\r\n");
+	printf("\r\n");
 #endif
 }
 

@@ -37,7 +37,9 @@
 
 
 //µ÷ÊÔ¿ª¹Ø
-#define  DEBUG
+#define	DEBUG_MCU_TO_DDA
+#define	DEBUG_MCU_STATUS
+#define DEBUG_DDA_TO_MCU
 
 #define _BV(bit) (1 << (bit))
 

@@ -426,8 +426,6 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler,25)
   
   add_IWDG_counter();
   
-  HAL_KEY_Scan();		  //°´¼üÉ¨Ãè
-  
   if( UART3.RxDataFlag == TRUE )
 	  {
 		  UART3.RxTimeOutCnt ++;

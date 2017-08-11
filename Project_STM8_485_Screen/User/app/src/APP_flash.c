@@ -12,7 +12,7 @@ void APP_SN_Write(void){
 	Code = ALG_SN_Code(APP_SN_StrPar.SNdata);						//获取SN加密字
 	ALG_SN_Encrypt(APP_SN_StrPar.SNdata, Code);						//对SN设备号加密
 	HAL_eeprom_WriteData(SNSTARTADD, APP_SN_StrPar.SNdata, SNLENG);	//写入SN加密后的数据
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 	printf("\r\n【MCU status】:encrypted SN: %02X_%02X_%02X_%02X_%02X\r\n",APP_SN_StrPar.SNdata[0],
 		APP_SN_StrPar.SNdata[1],APP_SN_StrPar.SNdata[2],APP_SN_StrPar.SNdata[3],APP_SN_StrPar.SNdata[4]);
 #endif
@@ -35,7 +35,7 @@ void APP_SN_Init(void){
 			u8 Code = 0;
 			Code = ALG_SN_Code(APP_SN_StrPar.SNdata);	//获取SN加密字
 			if((APP_SN_StrPar.SNdata[3] == EQUIPMENTCHAR2^Code) && (APP_SN_StrPar.SNdata[4] == EQUIPMENTCHAR1^Code) ){	//判断加密是否正确
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 				printf("\r\n【MCU status】:SN: %02X_%02X_%02X_%02X_%02X\r\n",APP_SN_StrPar.SNdata[0],
 				APP_SN_StrPar.SNdata[1],APP_SN_StrPar.SNdata[2],APP_SN_StrPar.SNdata[3],APP_SN_StrPar.SNdata[4]);
 #endif
@@ -46,7 +46,7 @@ void APP_SN_Init(void){
 			}else{	//加密不正确
 				while(1)
 				{
-					printf("\r\n【%s】SN falut !\r\n",__FUNCTION__ );
+					printf("\r\n【MCU Status】SN falut !\r\n" );
 					feed_IWDG();				//喂狗	
 				}
 			}
@@ -55,30 +55,30 @@ void APP_SN_Init(void){
 			//while(1);//添加LED闪烁指示，和喂狗过程
 			while(1)
 			{
-				printf("\r\n【%s】SN falut !\r\n",__FUNCTION__ );
+				printf("\r\n【MCU Status】SN falut !\r\n" );
 				feed_IWDG();				//喂狗	
 			}
 		}
 	}
 	else{
 		if(APP_SN_StrPar.SNdata[4] == EQUIPMENTCHAR1 && APP_SN_StrPar.SNdata[3] == EQUIPMENTCHAR2){//SN号未加密
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 	printf("\r\n【MCU status】:The is SN unencrypted\r\n");
 #endif
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 	printf("\r\n【MCU status】:unencrypted SN: %02X_%02X_%02X_%02X_%02X\r\n",APP_SN_StrPar.SNdata[0],
 		APP_SN_StrPar.SNdata[1],APP_SN_StrPar.SNdata[2],APP_SN_StrPar.SNdata[3],APP_SN_StrPar.SNdata[4]);
 #endif
 			APP_SN_Write();	//对SN数据进行加密
 		}
 		else if(APP_SN_StrPar.SNdata[4] == 0x00 && APP_SN_StrPar.SNdata[3] == 0x00){//无SN号
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 	printf("\r\n【MCU status】:The is no SN\r\n");
 #endif
 			//while(1);//添加LED闪烁指示，和喂狗过程
 		}
 		else{//SN有误
-#ifdef DEBUG
+#ifdef DEBUG_MCU_STATUS
 	printf("\r\n【MCU status】:SN error\r\n");
 #endif
 			//while(1);//添加LED闪烁指示，和喂狗过程

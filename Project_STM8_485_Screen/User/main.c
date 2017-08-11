@@ -37,9 +37,9 @@ static void WORK_VALUE_init(void){
 	Main_StrPar.Init_LED1_ShakeFlag=FALSE;
 	
 	HAL_KEY_Value();		//按键结构体赋值
-	HAL_TIM4_Value();		//定时器4结构体赋值
+	HAL_TIM4_Value();		//定时器4结构体赋值 
 	APP_spider_ValueInit(); //spider结构体赋值
-	APP_Camera_ValueInit();
+	// APP_Camera_ValueInit();
 
 	APP_LED_ValueInit();	//引导屏空车位数初始化
 }
