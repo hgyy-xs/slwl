@@ -42,6 +42,7 @@ static void WORK_VALUE_init(void){
 	// APP_Camera_ValueInit();
 
 	APP_LED_ValueInit();	//引导屏空车位数初始化
+	APP_LEDSetShow();	//设置引导屏工作参数
 }
 
 /*

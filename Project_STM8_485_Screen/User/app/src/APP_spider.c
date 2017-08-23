@@ -668,16 +668,17 @@ void APP_spider_uartDeal(void){
                                                 }
 #ifdef DEBUG_MCU_STATUS                                               
                                                 printf("\r\n");
-                                                printf("DDA TO Screen U数据长度：%02x\n",APP_Screen.Tx_Data[7]);
-#endif												
-                                                HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
+                                                printf("DDA TO Screen U设置空车位数：%02x%02x\n",APP_Screen.Tx_Data[10],APP_Screen.Tx_Data[11]);
+#endif                                          
+												APP_Deal_U_Package_From_GW();		
+                                                //HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口直接转发来自网关的数据
                                                 
                                             	//HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
 												// PRO_spider_BuildCMDForPar(CMD_TYPE_TRFER,TRFER_CMD_SENDUPACK,g_temporary_buffer_for_screen.buffer,3);//生成U包命令
 												// APP_SPIDER.DealSendCmdToSpiderAddr = 1;//标志有命令需要发送到spider
 												APP_Screen_dealSendCmdToSpider();	//DDA终端回执                                           	
 						}
-						else if(UART3.RxBuff[len2]==0x33){
+						else if(UART3.RxBuff[len2]==0x33){	//暂时用不到M包
 							//下行M包
 #ifdef DEBUG_DDA_TO_MCU                                               
                                                 printf("\r\nReceived M Package:");
@@ -693,9 +694,9 @@ void APP_spider_uartDeal(void){
                                                 printf("\r\n");
                                                 printf("DDA TO Screen M数据长度：%02x\n",APP_Screen.Tx_Data[7]);
 #endif
-                                                HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
+                                                //HAL_RS485_TxNbyte( (u8 *)(APP_Screen.Tx_Data+8),(u16)APP_Screen.Tx_Data[7],USER_USART2);	//485串口数据转发引导屏数据
                                             	// HAL_RS485_TxNbyte( (u8 *)(UART3.RxBuff+7),UART3.RxLeng-4,USER_USART2);	//485串口数据转发
-                                            	APP_Screen_dealSendCmdToSpider();	//DDA终端回执  
+                                            	//APP_Screen_dealSendCmdToSpider();	//DDA终端回执  
 						}
 						else if(UART3.RxBuff[len2]==0x34){
 							//下行P包次数

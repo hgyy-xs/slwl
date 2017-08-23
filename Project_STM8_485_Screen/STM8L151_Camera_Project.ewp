@@ -1584,9 +1584,6 @@
       <name>$PROJ_DIR$\User\app\src\APP_iwdg.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\User\app\src\APP_led.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\User\app\src\APP_nor_mode.c</name>
     </file>
     <file>

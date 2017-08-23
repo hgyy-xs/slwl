@@ -110,6 +110,7 @@ void HAL_KEY_deal(void){
 				APP_LED.vehicle_count = 1;
 			}
 			APP_LED.vehicle_count--;
+			APP_Deal_Vehicle_By_Key();
 #ifdef DEBUG_MCU_STATUS
 			printf("\r\n空车位数：%d\n",APP_LED.vehicle_count);
 #endif
@@ -158,11 +159,12 @@ void HAL_KEY_deal(void){
 		//--------处理	单终端组网命令 {0x59,0x03,0x00,0x03,0x11,0x01,0x11,0x47};多终端组网命令  {0x59,0x03,0x00,0x03,0x11,0x02,0x14,0x47};
 		if(HalKey2_StrPar.press_status ==1)//短按KEY2 空车位数加一
 		{
-			if(APP_LED.vehicle_count == 9)
+			if(APP_LED.vehicle_count == 999)
 			{
-				APP_LED.vehicle_count = 8;
+				APP_LED.vehicle_count = 998;
 			}
 			APP_LED.vehicle_count++;
+			APP_Deal_Vehicle_By_Key();
 #ifdef DEBUG_MCU_STATUS
 			printf("\r\n空车位数：%d\n",APP_LED.vehicle_count);   
 #endif
