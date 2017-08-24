@@ -1,0 +1,6 @@
+---- APP_Spider_dealSendCmdToSpider Matches (5 in 3 files) ----
+APP_nor_mode_RealTask in APP_nor_mode.c (User\app\src) : 	APP_Spider_dealSendCmdToSpider();	//发送命令到spider处理
+APP_spider_init in APP_spider.c (User\app\src) : 		APP_Spider_dealSendCmdToSpider();
+APP_spider.c (User\app\src) line 725 : void APP_Spider_dealSendCmdToSpider(void){
+APP_Spider_ReadyOnNet in APP_spider.c (User\app\src) : 		APP_Spider_dealSendCmdToSpider();				//发送命令到spider模块的事件
+APP_spider.h (User\app\inc) line 74 : void APP_Spider_dealSendCmdToSpider(void);
